@@ -1,0 +1,79 @@
+# Configure AWS CLI using aws configure
+
+# Create provider.tf
+
+# Create a new bucket and use this for remote backend for terraform and update backend.tf
+
+# Create data.tf to fetch the AMI's and AZ's
+
+# Create main.tf for VPC configuration ( we using existing terraform modules here ) followed by updating its relavent variables in variables.tf and terraform.tfvars
+
+# Test all of the above code 
+
+Under /Users/rahul/Documents/DevOps-Projects/K8S/Automation/deploy-eks-terraform , run below commands
+
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+
+Finally create the VPC using below command
+
+terraform apply --auto-approve
+
+- Verify if below VPC components were created in AWS Console 
+
+> VPC : jenkins-vpc
+> Public Subnet: jenkins-vpc-public-ca-central-1a
+> Route Tables : 2 route tables - jenkins-vpc-public , jenkins-vpc-default
+> Internet Gateway : jenkins-vpc
+
+# Update the main.tf with new code for creating the SG
+
+# Create the SG
+
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply --auto-approve
+
+- Verify the followning from AWS Console 
+
+> SG : jenkins-SG with correct inbound and outbound rules
+
+# Update main.tf to create a new EC2
+
+# Create the EC2
+
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply --auto-approve
+
+# Verify the new jenkins server was created and has the right SG associated with it from the AWS Console 
+
+# Login to jenkins server and set the password 
+
+# Create all the required .tf files under EKS cluster . Note - EKS cluster is deployed in a private subnet and we also define a nat gateway here to access internet but internet cannot access the EKS Cluster
+
+# Push code to github
+
+cd /Users/rahul/Documents/DevOps-Projects/K8S/Automation/deploy-eks-terraform
+
+git init
+git add .
+git commit -m "pushing all the  code to repo"
+git remote add origin git@github.com:easycloudcompute/deploy-eks-terraform.git
+git push -u origin main
+
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+
+

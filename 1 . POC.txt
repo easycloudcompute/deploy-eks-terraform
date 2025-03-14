@@ -1,0 +1,9 @@
+
+Create EC instance and install Jenkins on it 
+Write tf code to provision EKS Cluster
+Push code to github
+Create jenkins pipleine to provision EKS Cluster
+Deploy changes to AWS
+Implement deployment file and using kubectl , provision nginx sample app for testing
+
+------------------------------------------------------------------------------------------------
