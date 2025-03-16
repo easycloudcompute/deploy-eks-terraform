@@ -62,7 +62,7 @@ pipeline {
         stage('Deploying Nginx Application') {
             steps{
                 script{
-                    dir('EKS/ConfigurationFiles') {
+                    dir('EKS/k8s-manifest-files') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
                         sh 'kubectl apply -f deployment.yaml'
                         sh 'kubectl apply -f service.yaml'
