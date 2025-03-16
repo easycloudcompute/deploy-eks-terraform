@@ -54,7 +54,10 @@ terraform apply --auto-approve
 
 # Verify the new jenkins server was created and has the right SG associated with it from the AWS Console 
 
-# Login to jenkins server via and set the password 
+# Login to jenkins server using URL as http://public-ip-ec2:8080/
+
+- Install suggested plugins
+- Set user name and password as rahul/rahul
 
 # Create all the required .tf files under EKS cluster . Note - EKS cluster is deployed in a private subnet and we also define a nat gateway here to access internet but internet cannot access the EKS Cluster
 
@@ -64,7 +67,7 @@ cd /Users/rahul/Documents/DevOps-Projects/K8S/Automation/deploy-eks-terraform
 
 git init
 git add .
-git commit -m "pushing code to repo"
+git commit -m "pushing code to repo v1"
 git remote add origin git@github.com:easycloudcompute/deploy-eks-terraform.git
 git branch -M main
 git push -u origin main
@@ -76,7 +79,24 @@ git push -u origin main
 
 See img-1 
 
-# Create pipeline in Jenkins to provision EKS cluster
+# Create a new job as "pipeline" and copy the contents of "Jenkinsfile" in this folder 
+
+# Add parameter to this job for creating / destroying terraform resources 
+
+See img-2
+
+# Create a new folder under EKS-terraform-code called k8s-manifest-files . Add the deployment and service manifest files for nginx deployment here .
+
+# Upload all the code till now to our github repo
+
+cd /Users/rahul/Documents/DevOps-Projects/K8S/Automation/deploy-eks-terraform
+
+git init
+git add .
+git commit -m "pushing code to repo v2" 
+git push -u origin main
+
+
 
 
 

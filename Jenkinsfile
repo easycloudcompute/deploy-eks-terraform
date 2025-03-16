@@ -9,23 +9,23 @@ pipeline {
         stage('Checkout SCM'){
             steps{
                 script{
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/gauri17-pro/terraform-jenkins-eks.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/easycloudcompute/deploy-eks-terraform.git']])
                 }
             }
         }
         stage('Initializing Terraform'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('EKS-terraform-code'){
                         sh 'terraform init'
                     }
                 }
-            }
+            } 
         }
         stage('Formatting Terraform Code'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('EKS-terraform-code'){
                         sh 'terraform fmt'
                     }
                 }
@@ -34,7 +34,7 @@ pipeline {
         stage('Validating Terraform'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('EKS-terraform-code'){
                         sh 'terraform validate'
                     }
                 }
@@ -43,7 +43,7 @@ pipeline {
         stage('Previewing the Infra using Terraform'){
             steps{
                 script{
-                    dir('EKS'){
+                    dir('EKS-terraform-code'){
                         sh 'terraform plan'
                     }
                     input(message: "Are you sure to proceed?", ok: "Proceed")
@@ -53,7 +53,7 @@ pipeline {
         stage('Creating/Destroying an EKS Cluster'){
             steps{
                 script{
-                    dir('EKS') {
+                    dir('EKS-terraform-code') {
                         sh 'terraform $action --auto-approve'
                     }
                 }
