@@ -54,7 +54,7 @@ terraform apply --auto-approve
 
 # Verify the new jenkins server was created and has the right SG associated with it from the AWS Console 
 
-# Login to jenkins server and set the password 
+# Login to jenkins server via and set the password 
 
 # Create all the required .tf files under EKS cluster . Note - EKS cluster is deployed in a private subnet and we also define a nat gateway here to access internet but internet cannot access the EKS Cluster
 
@@ -64,16 +64,19 @@ cd /Users/rahul/Documents/DevOps-Projects/K8S/Automation/deploy-eks-terraform
 
 git init
 git add .
-git commit -m "pushing all the  code to repo"
+git commit -m "pushing code to repo"
 git remote add origin git@github.com:easycloudcompute/deploy-eks-terraform.git
+git branch -M main
 git push -u origin main
 
+# Add AWS credentials in jenkins UI - Access key and Secret Access Key .
 
+- Go to Manage Jenkins
+- Add new credentials as "Secret Text" for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
+See img-1 
 
-
-------------------------------------------------------------------------------------------------
-
+# Create pipeline in Jenkins to provision EKS cluster
 
 
 
